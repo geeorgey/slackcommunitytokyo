@@ -176,6 +176,7 @@
     set("statMembers", members.toLocaleString("ja-JP") + "人");
     set("statEvents", data.events.length + "回");
     set("statReboot", (data.reboot && data.reboot.label) || "—");
+    if (data.historyNote) set("historyNote", data.historyNote);
 
     var links = data.links || {};
     [["joinLink", links.chapter], ["footerChapter", links.chapter], ["footerRepo", links.repo]].forEach(

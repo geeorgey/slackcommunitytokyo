@@ -466,3 +466,9 @@ a { color: var(--accent); }
 
 .site-footer p { margin: 0 0 6px; }
 .footer-links { display: flex; gap: 10px; flex-wrap: wrap; }
+
+.history-note {
+  margin: 18px 0 0;
+  font-size: 13px;
+  color: var(--text-soft);
+}
