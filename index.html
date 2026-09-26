@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>1,000人突破！ Slack Community :Tokyo</title>
-<meta name="description" content="Slack Community :Tokyo チャプターがメンバー1,000人を突破しました。2025年8月のリブート以降の開催履歴と、9/28の次回イベント「Dreamforce 2026 で見てきたSlack情報共有会」のご案内。">
+<meta name="description" content="Slack Community :Tokyo チャプターがメンバー1,000人を突破しました。2025年8月の再起動時点の登録メンバー累計548人から約13か月の伸び、開催履歴と参加実績、9/28の次回イベント「Dreamforce 2026 で見てきたSlack情報共有会」のご案内。">
 <meta property="og:title" content="1,000人突破！ Slack Community :Tokyo">
 <meta property="og:description" content="Slack Community :Tokyo チャプターがメンバー1,000人を突破しました。2025年8月のリブート以降の開催履歴つき。">
 <meta property="og:type" content="website">
@@ -33,8 +33,10 @@
       <span class="brand-text">Slack Community <b>:Tokyo</b></span>
     </a>
     <nav class="head-nav">
+      <a class="nav-extra" href="#growth">メンバーの伸び</a>
       <a href="#next">次回イベント</a>
       <a href="#history">これまでの歩み</a>
+      <a class="nav-extra" href="#attendance">参加実績</a>
       <a href="#leaders">リーダー</a>
       <a class="btn btn-sm" href="https://slackcommunity.com/tokyo/" target="_blank" rel="noopener">参加する</a>
     </nav>
@@ -92,6 +94,39 @@
     </div>
   </section>
 
+  <!-- ============ MEMBER GROWTH (centrepiece) ============ -->
+  <section class="section section-growth" id="growth">
+    <div class="wrap">
+      <p class="section-kicker">メンバーの伸び</p>
+      <h2 class="section-title" id="growth-title">548人から、約13か月で1,000人突破。</h2>
+      <p class="section-lead" id="growth-lead">
+        2025年8月、新しいチャプターリーダー体制でチャプターは再起動しました。
+        その時点の<b>登録メンバー累計</b>は 548人。そこから約13か月、
+        管理ダッシュボードの登録メンバー累計は <b>1,001人</b> になりました。
+      </p>
+
+      <div class="growth-stat-row" id="growth-stats"></div>
+
+      <figure class="viz-figure">
+        <div class="viz-head">
+          <h3 class="viz-title">登録メンバー累計の推移（2025年8月〜2026年9月）</h3>
+          <p class="viz-sub">系列：Chapter member growth over time / Running total of chapter memberships（チャプター登録の累計値）</p>
+        </div>
+        <div class="viz-canvas" id="chart-growth"></div>
+        <figcaption class="viz-caption" id="growth-caption"></figcaption>
+      </figure>
+
+      <div class="viz-table-block">
+        <h3 class="viz-table-title">読み取れる数値一覧（登録メンバー累計・月別）</h3>
+        <div class="table-scroll">
+          <table class="viz-table" id="table-growth"></table>
+        </div>
+      </div>
+
+      <div class="viz-notes" id="growth-notes"></div>
+    </div>
+  </section>
+
   <!-- ============ NEXT EVENT ============ -->
   <section class="section section-next" id="next">
     <div class="wrap">
@@ -113,7 +148,7 @@
           <dl class="next-meta">
             <div><dt>開催方式</dt><dd>ハイブリッド開催</dd></div>
             <div><dt>日時</dt><dd>2026年9月28日(月) 16:30&ndash;18:00 JST（開場 16:00）</dd></div>
-            <div><dt>現地会場</dt><dd>株式会社リバネスナレッジ セミナールーム</dd></div>
+            <div><dt>現地会場</dt><dd>株式会社リバネスナレッジ セミナールーム<br><span class="next-addr">東京都新宿区下宮比町1-4 飯田橋御幸ビル4階</span></dd></div>
             <div><dt>オンライン</dt><dd>Google Meet</dd></div>
           </dl>
           <div class="next-actions">
@@ -140,6 +175,43 @@
       <ol class="timeline" id="timeline"></ol>
 
       <p class="history-note" id="history-note"></p>
+    </div>
+  </section>
+
+  <!-- ============ ATTENDANCE ============ -->
+  <section class="section section-attend" id="attendance">
+    <div class="wrap">
+      <p class="section-kicker">参加実績</p>
+      <h2 class="section-title">延べ337件の申込と、208件のチェックイン記録。</h2>
+      <p class="section-lead">
+        管理ダッシュボードの Registrations で、Event start date を 2025年8月1日〜2026年9月26日に絞って集計した値です
+        （会場・タイトルでの絞り込みはしていません）。
+        いずれも「延べ」の件数で、ユニークな人数ではありません。
+      </p>
+
+      <div class="attend-stat-row" id="attend-stats"></div>
+
+      <p class="viz-def" id="attend-def"></p>
+
+      <figure class="viz-figure">
+        <div class="viz-head">
+          <h3 class="viz-title">開催月別の 延べ申込 と 延べ参加（チェックイン記録）</h3>
+          <p class="viz-sub">管理ダッシュボード Registrations &gt; Attendance の開催月別集計</p>
+        </div>
+        <div class="viz-legend" id="attend-legend"></div>
+        <div class="viz-canvas" id="chart-attend"></div>
+        <div class="viz-legend viz-legend-state" id="attend-legend-state"></div>
+        <figcaption class="viz-caption" id="attend-caption"></figcaption>
+      </figure>
+
+      <div class="viz-table-block">
+        <h3 class="viz-table-title">開催月別の数値一覧</h3>
+        <div class="table-scroll">
+          <table class="viz-table" id="table-attend"></table>
+        </div>
+      </div>
+
+      <div class="viz-notes" id="attend-notes"></div>
     </div>
   </section>
 
@@ -212,6 +284,8 @@
 </footer>
 
 <script src="data/events.js"></script>
+<script src="data/metrics.js"></script>
 <script src="assets/js/main.js"></script>
+<script src="assets/js/metrics.js"></script>
 </body>
 </html>

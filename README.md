@@ -29,9 +29,11 @@ https://geeorgey.github.io/slackcommunitytokyo/
 .
 ├── index.html              # ページ本体（構造のみ）
 ├── data/events.js          # 掲載データ（メンバー数・イベント一覧）← ここだけ直せば更新できます
+├── data/metrics.js         # 管理ダッシュボードの集計スナップショット（登録メンバー累計・参加実績）
 ├── assets/
 │   ├── css/style.css       # スタイル（ライト/ダークモード対応）
-│   └── js/main.js          # カウントアップ、紙吹雪、タイムライン描画
+│   ├── js/main.js          # カウントアップ、紙吹雪、タイムライン描画
+│   └── js/metrics.js       # 登録メンバー累計・参加実績のグラフ（インラインSVGを自前生成）
 ├── .nojekyll               # Jekyll 処理をスキップ
 └── README.md
 ```
@@ -73,6 +75,31 @@ members: {
 }
 ```
 
+## 管理ダッシュボードの数値を更新する
+
+「メンバーの伸び」と「参加実績」の数値は **`data/metrics.js`** が唯一の情報源です。
+ファイル先頭のコメントに、管理ダッシュボードのどこを見てどう写すかが書いてあります。
+要点だけ:
+
+- `memberGrowth.series` は Analytics > Members の
+  **「Chapter member growth over time / Running total of chapter memberships」**
+  の月別表示値。**登録メンバーの累計**であって、「新規登録者数」でも「イベント参加者数」でもありません。
+  この言い換えをしないでください。
+- 月末が未確定の最新月は `provisionalMonth` に指定します（グラフが中抜きの点＋破線になります）。
+- 公開チャプターページの表示値（1,002人）は `memberGrowth.publicPage` に**別枠**で持っています。
+  出典が違うので `series` に混ぜないでください。
+- `attendance.months` は Analytics > Registrations の Attendance の開催月別値。
+  **`337` は延べ申込、`208` は延べ参加（チェックイン記録）** です。
+  ユニーク参加者数・全実参加者数と呼んではいけません
+  （管理画面の定義：`Check-ins / Attendees. This does not include in-person attendees who were not checked-in.`）。
+- 3つの状態を必ず区別します。**実数の 0 は `0`**、**画面が ∅ の月は `null`**（0 にしない／合計・平均に含めない）、
+  **未開催の月は `status: "upcoming"`**。
+- 管理ダッシュボード由来ではない数値（例: 2025-12 の `organiserEstimate.estimatedAttendance`）は
+  構造を分けて持ち、合計には加算しません。
+- `assets/js/metrics.js` が読み込み時に合計・比率・月→イベントの一意性を検証します。
+  ずれるとブラウザのコンソールに `[SCT metrics] 検証NG` が出ます（`window.SCT_CHECKS` で確認できます）。
+- **個人名・メールアドレス・認証情報、および埋込トークン付きの管理画面URLは絶対に入れないでください。**
+
 ## ローカルで確認する
 
 ```bash
@@ -86,6 +113,11 @@ python3 -m http.server 8000
 - ダークモードは `prefers-color-scheme` に追従します
 - `prefers-reduced-motion: reduce` の環境ではカウントアップ・紙吹雪・スクロール演出を停止します
 - 紙吹雪は Canvas 2D の自前実装（約80行）です
+- グラフは外部チャートライブラリ・CDNを使わず、インラインSVGを自前で組み立てています
+  （色は CSS 変数 `--viz-*` 参照なので、ライト/ダークの切り替えに再描画なしで追従します）
+- グラフの色はコントラスト・色覚多様性（protan/deutan）の分離を検証したうえで選んでいます。
+  ライト `#7B2A7D` / `#2196C4`、ダーク `#A34EA5` / `#26A0CE`。値を手で触らないでください
+- 数値は表でも読めるようにしてあり、表はスクリーンリーダーからも隠していません
 
 ---
 

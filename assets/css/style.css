@@ -485,3 +485,249 @@ img,svg{max-width:100%}
 /* line breaks only on wider screens */
 .br-lg{display:none}
 @media (min-width:760px){ .br-lg{display:inline} }
+
+/* =========================================================
+   METRICS — member growth & attendance
+   Series colours are validated against the page surfaces
+   (light #FFFFFF card / dark #221B27 card) with the data-viz
+   six checks: worst adjacent CVD ΔE 18.8 light / 9.5 dark,
+   normal-vision ΔE 28.1 / 23.3, contrast 8.50 & 3.37 light,
+   3.34 & 5.58 dark. Do not hand-tweak these hexes.
+   ========================================================= */
+:root{
+  --viz-s1:#7B2A7D;   /* 登録メンバー累計 / 延べ申込 */
+  --viz-s2:#2196C4;   /* 延べ参加（チェックイン記録） */
+  --viz-s1-wash:rgba(123,42,125,.12);
+  --viz-surface:var(--card);
+  --viz-grid:var(--line);
+  --viz-axis:#756E7B;
+  --viz-ink:var(--ink);
+  --viz-muted:#6B646F;
+  --viz-state-zero:#756E7B;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --viz-s1:#A34EA5;
+    --viz-s2:#26A0CE;
+    --viz-s1-wash:rgba(163,78,165,.20);
+    --viz-axis:#9A929D;
+    --viz-muted:#B5ADB8;
+    --viz-state-zero:#9A929D;
+  }
+}
+:root[data-theme="dark"]{
+  --viz-s1:#A34EA5;
+  --viz-s2:#26A0CE;
+  --viz-s1-wash:rgba(163,78,165,.20);
+  --viz-axis:#9A929D;
+  --viz-muted:#B5ADB8;
+  --viz-state-zero:#9A929D;
+}
+
+/* ---------- section frames ---------- */
+.section-growth{background:var(--bg-alt);border-bottom:1px solid var(--line)}
+.section-attend{border-top:1px solid var(--line)}
+
+/* ---------- headline figures ---------- */
+.growth-stat-row,
+.attend-stat-row{
+  display:grid;grid-template-columns:1fr;
+  gap:2px;
+  margin:0 0 clamp(26px,4vw,36px);
+  padding:14px 12px;
+  border:1px solid var(--line);
+  border-radius:var(--r);
+  background:var(--card);
+  box-shadow:0 1px 2px rgba(29,28,29,.05);
+}
+@media (min-width:560px){
+  .growth-stat-row,
+  .attend-stat-row{grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;padding:18px 8px}
+}
+.growth-stat{display:flex;flex-direction:column;align-items:center;gap:3px;padding:10px 2px;min-width:0}
+.growth-stat+.growth-stat{border-top:1px solid var(--line)}
+@media (min-width:560px){
+  .growth-stat{padding:4px 2px}
+  .growth-stat+.growth-stat{border-top:0;border-left:1px solid var(--line)}
+}
+.growth-stat .gs-num{
+  font-family:var(--display);font-weight:900;
+  font-size:clamp(1.7rem,6.2vw,2.6rem);line-height:1.1;
+  color:var(--viz-s1);
+  letter-spacing:-.02em;
+  white-space:nowrap;
+}
+.attend-stat-row .growth-stat:nth-child(2) .gs-num{color:var(--viz-s2)}
+.growth-stat .gs-label{font-size:.72rem;font-weight:700;letter-spacing:.03em;color:var(--viz-muted);text-align:center;line-height:1.5}
+.growth-stat .gs-sub{font-size:.68rem;color:var(--viz-muted);text-align:center;line-height:1.5;opacity:.85}
+
+/* ---------- figure / chart shell ---------- */
+.viz-figure{
+  margin:0 0 clamp(22px,4vw,30px);
+  padding:18px 14px 16px;
+  background:var(--card);
+  border:1px solid var(--line);
+  border-radius:var(--r);
+  box-shadow:0 1px 2px rgba(29,28,29,.05);
+}
+@media (min-width:720px){ .viz-figure{padding:22px 24px 20px} }
+.viz-head{margin:0 0 12px}
+.viz-title{margin:0;font-size:clamp(.95rem,2.3vw,1.08rem);font-weight:800;line-height:1.5}
+.viz-sub{margin:.3em 0 0;font-size:.72rem;line-height:1.6;color:var(--viz-muted)}
+.viz-canvas{width:100%;max-width:100%;overflow:hidden}
+.viz-canvas svg{display:block;width:100%;height:auto}
+.viz-caption{
+  margin:12px 0 0;padding-top:11px;
+  border-top:1px dashed var(--line);
+  font-size:.75rem;line-height:1.85;color:var(--ink-soft);
+}
+.viz-caption b{color:var(--ink);font-weight:700}
+
+/* ---------- legends ---------- */
+.viz-legend{display:flex;flex-wrap:wrap;gap:8px 16px;margin:0 0 12px;font-size:.76rem;color:var(--ink-soft)}
+.viz-legend-state{margin:12px 0 0;font-size:.72rem;color:var(--viz-muted)}
+.viz-legend-item{display:inline-flex;align-items:center;gap:7px;line-height:1.5}
+.viz-swatch{flex:0 0 auto;width:14px;height:10px;border-radius:3px;display:inline-block}
+.viz-swatch.is-s1{background:var(--viz-s1)}
+.viz-swatch.is-s2{background:var(--viz-s2)}
+.viz-swatch.is-zero{width:4px;height:12px;border-radius:2px;background:var(--viz-state-zero)}
+.viz-swatch.is-nodata{width:14px;height:10px;border-radius:3px;background:transparent;border:1px dashed var(--viz-axis)}
+.viz-swatch.is-upcoming{width:14px;height:10px;border-radius:3px;background:rgba(224,30,90,.14);border:1px solid var(--red)}
+
+/* ---------- chart internals (SVG) ---------- */
+.viz-grid-line{stroke:var(--viz-grid);stroke-width:1}
+.viz-axis-line{stroke:var(--viz-axis);stroke-width:1}
+.viz-tick{fill:var(--viz-axis);font-size:11px;font-family:var(--sans);font-variant-numeric:tabular-nums}
+.viz-rowlabel{fill:var(--viz-muted);font-size:11px;font-weight:700;font-family:var(--sans);font-variant-numeric:tabular-nums}
+.viz-value{fill:var(--viz-ink);font-size:11px;font-weight:700;font-family:var(--sans);font-variant-numeric:tabular-nums}
+.viz-value-sm{fill:var(--viz-muted);font-size:10px;font-family:var(--sans)}
+.viz-anno{fill:var(--viz-ink);font-size:11px;font-weight:700;font-family:var(--sans)}
+.viz-anno-sub{fill:var(--viz-muted);font-size:10px;font-family:var(--sans)}
+.viz-line{fill:none;stroke:var(--viz-s1);stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.viz-line-prov{fill:none;stroke:var(--viz-s1);stroke-width:2;stroke-dasharray:5 4;stroke-linecap:round}
+.viz-area{fill:var(--viz-s1-wash)}
+.viz-ref-line{stroke:var(--viz-s1);stroke-width:1.5;stroke-dasharray:4 4;opacity:.55}
+.viz-dot{fill:var(--viz-s1);stroke:var(--viz-surface);stroke-width:2}
+.viz-dot-hollow{fill:var(--viz-surface);stroke:var(--viz-s1);stroke-width:2;stroke-dasharray:3 2.4}
+.viz-bar-s1{fill:var(--viz-s1)}
+.viz-bar-s2{fill:var(--viz-s2)}
+.viz-zero-stub{fill:var(--viz-state-zero)}
+.viz-upcoming-band{fill:rgba(224,30,90,.10);stroke:var(--red);stroke-width:1;stroke-dasharray:3 3}
+.viz-callout{stroke:var(--viz-axis);stroke-width:1;stroke-dasharray:3 3;fill:none}
+
+/* hover / focus tooltip */
+.viz-pt{cursor:default}
+.viz-pt .viz-hit{fill:transparent}
+.viz-pt .viz-reveal{opacity:0;transition:opacity .12s ease}
+.viz-pt:hover .viz-reveal,
+.viz-pt:focus .viz-reveal,
+.viz-pt:focus-visible .viz-reveal{opacity:1}
+.viz-pt:focus{outline:none}
+.viz-pt:focus-visible .viz-hit{stroke:var(--viz-s2);stroke-width:2;stroke-dasharray:3 2}
+.viz-tip-box{fill:var(--viz-surface);stroke:var(--viz-s1);stroke-width:1}
+.viz-tip-text{fill:var(--viz-ink);font-size:11px;font-weight:700;font-family:var(--sans);font-variant-numeric:tabular-nums}
+.viz-cross{stroke:var(--viz-axis);stroke-width:1;stroke-dasharray:3 3}
+
+/* ---------- tables ---------- */
+.viz-table-block{margin:0 0 clamp(20px,3.5vw,28px)}
+.viz-table-title{margin:0 0 .7em;font-size:.9rem;font-weight:800;letter-spacing:.01em}
+.table-scroll{
+  max-width:100%;overflow-x:auto;
+  -webkit-overflow-scrolling:touch;
+  border:1px solid var(--line);
+  border-radius:12px;
+  background:var(--card);
+}
+.viz-table{width:100%;border-collapse:collapse;font-size:.78rem;line-height:1.6}
+.viz-table caption{
+  caption-side:top;text-align:left;
+  padding:10px 12px;
+  font-size:.72rem;line-height:1.7;color:var(--viz-muted);
+  border-bottom:1px solid var(--line);
+}
+.viz-table th,.viz-table td{
+  padding:8px 10px;
+  border-bottom:1px solid var(--line);
+  text-align:right;
+  white-space:nowrap;
+  font-variant-numeric:tabular-nums;
+}
+.viz-table thead th{
+  background:var(--bg-alt);
+  font-size:.7rem;font-weight:800;letter-spacing:.03em;color:var(--ink-soft);
+  white-space:normal;
+}
+.viz-table th[scope="row"]{text-align:left;font-weight:700;color:var(--ink)}
+.viz-table thead th:first-child,
+.viz-table tfoot th:first-child{text-align:left}
+.viz-table tbody tr:last-child th,
+.viz-table tbody tr:last-child td{border-bottom:0}
+.viz-table tfoot th,.viz-table tfoot td{
+  background:var(--bg-alt);font-weight:800;border-bottom:0;border-top:2px solid var(--line);
+}
+.viz-table td.is-nodata{color:var(--viz-muted);font-style:normal;background:repeating-linear-gradient(135deg,transparent,transparent 5px,var(--bg-alt) 5px,var(--bg-alt) 10px)}
+.viz-table td.is-zero{color:var(--viz-ink);font-weight:700}
+.viz-table td.is-zero .zero-mark{display:inline-block;width:4px;height:11px;border-radius:2px;background:var(--viz-state-zero);vertical-align:-1px;margin-right:5px}
+.viz-table td.is-upcoming{color:var(--red);font-weight:700;background:rgba(224,30,90,.07)}
+.viz-table td.is-estimate{color:var(--viz-muted)}
+.viz-table tr.row-upcoming th[scope="row"]{color:var(--red)}
+.viz-table .cell-note{display:block;font-size:.68rem;font-weight:500;color:var(--viz-muted);white-space:normal;line-height:1.55;margin-top:2px;max-width:22em}
+.viz-table td:not([class]) .cell-note{color:var(--viz-muted)}
+
+/* ---------- notes ---------- */
+.viz-notes{margin:0;display:grid;gap:10px}
+.viz-note-item{
+  margin:0;padding:11px 14px;
+  border-left:3px solid var(--line);
+  background:var(--card);
+  border-radius:0 10px 10px 0;
+  font-size:.76rem;line-height:1.85;color:var(--ink-soft);
+}
+.viz-note-item.is-warn{border-left-color:var(--yellow)}
+.viz-note-item.is-src{border-left-color:var(--viz-s1);color:var(--viz-muted);font-size:.73rem}
+.viz-note-item b{color:var(--ink);font-weight:700}
+.viz-def{
+  margin:0 0 clamp(20px,3.5vw,26px);
+  padding:13px 16px;
+  border:1px solid var(--line);border-radius:12px;
+  background:var(--card);
+  font-size:.76rem;line-height:1.85;color:var(--ink-soft);
+}
+.viz-def b{color:var(--ink);font-weight:700}
+.viz-def .viz-def-verbatim{
+  display:block;margin-top:.5em;
+  font-size:.72rem;color:var(--viz-muted);
+  font-family:ui-monospace,SFMono-Regular,Menlo,monospace;
+  word-break:break-word;
+}
+
+/* ---------- timeline attendance line ---------- */
+.tl-attend{
+  margin:.7em 0 0;padding-top:.6em;
+  border-top:1px dashed var(--line);
+  font-size:.76rem;line-height:1.75;color:var(--ink-soft);
+}
+.tl-attend .tl-attend-fig{font-weight:700;color:var(--ink);font-variant-numeric:tabular-nums}
+.tl-attend .tl-attend-src{
+  display:inline-block;margin-left:.5em;
+  padding:.1em .5em;border-radius:999px;
+  background:var(--bg-alt);border:1px solid var(--line);
+  font-size:.68rem;font-weight:700;color:var(--viz-muted);
+}
+.tl-attend .tl-attend-note{display:block;margin-top:.2em;font-size:.72rem;color:var(--viz-muted);line-height:1.7}
+
+/* ---------- address under venue name ---------- */
+.next-addr{display:inline-block;font-size:.95em;color:var(--viz-muted)}
+
+/* ---------- nav extras (only where there is room) ---------- */
+.head-nav>a.nav-extra{display:none}
+@media (min-width:1000px){ .head-nav>a.nav-extra{display:inline-block} }
+
+/* ---------- visually hidden ---------- */
+.viz-sr{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
+.viz-table td.is-note{
+  text-align:left;white-space:normal;
+  min-width:15em;max-width:26em;
+  font-size:.73rem;line-height:1.7;color:var(--ink-soft);
+  font-variant-numeric:normal;
+}

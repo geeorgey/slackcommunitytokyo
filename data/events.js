@@ -33,7 +33,7 @@ window.SCT_DATA = {
       "time": "16:30–18:00",
       "title": "Dreamforce 2026 で見てきたSlack情報共有会",
       "format": "ハイブリッド",
-      "venue": "株式会社リバネスナレッジ セミナールーム ＋ オンライン（Google Meet）",
+      "venue": "株式会社リバネスナレッジ セミナールーム（東京都新宿区下宮比町1-4 飯田橋御幸ビル4階）＋ オンライン（Google Meet）",
       "summary": "9/15–17に開催された Dreamforce 2026 の Slack 関連トピックを、現地で見てきたチャプターリーダーの二人が共有します。開場は16:00です。",
       "url": "https://slackcommunity.com/events/details/slack-tokyo-presents-dreamforce-2026-dejian-tekitaslackqing-bao-gong-you-hui/",
       "upcoming": true
