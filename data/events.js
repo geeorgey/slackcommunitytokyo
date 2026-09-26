@@ -1,115 +1,127 @@
 /*
- * Slack Community: Tokyo — サイト掲載データ
- * ここだけ書き換えればサイトの内容が更新されます（ビルド不要）。
+ * Slack Community :Tokyo — サイト掲載データ
+ * ビルド不要。このファイルだけ書き換えればサイトの内容が更新されます。
  *
- * event の書き方:
- *   date        "2026-09-28" 形式。曜日は自動で付きます
- *   dateLabel   日付が未確定のときの表示（例 "2026年4月"）。date より優先されます
- *   unconfirmed true にすると「日程確認中」のチップが付きます
- *   upcoming    true にすると「次回イベント」として上部にも大きく表示されます（1件だけ）
+ * members.count  ヒーローのカウントアップと統計に使う現在のメンバー数
+ *
+ * events[] の書き方（新しい順に並べてください）:
+ *   date      "2026-09-28" 形式。月までしか分からないときは "2026-08" でも可
+ *   time      "16:30–18:00" など。省略可
+ *   title     イベントタイトル
+ *   format    "ハイブリッド" など。タグとして表示されます。省略可
+ *   venue     会場。省略可
+ *   summary   一言説明。省略可
+ *   url       イベントページのURL。省略可
+ *   upcoming  true にすると「次回」として強調表示されます（1件だけ）
+ *   milestone 特別なタグ（例 "リブート後 第1回"）。省略可
  */
-var BASE = "https://slackcommunity.com/events/details/";
-
 window.SCT_DATA = {
-  // Slack Community: Tokyo のメンバー数（2026年9月26日時点）
   members: {
     count: 1002,
     milestone: 1000,
-    milestoneDate: "2026-09-26"
+    asOf: "2026-09-26"
   },
-  reboot: {
-    label: "2025年8月",
-    title: "Slack Community: Tokyo リブート",
-    summary:
-      "新しいチャプターリーダーが就任。エンジニア中心だったコミュニティを、管理者や日々Slackを使うすべての人に開いていく方針で再スタートしました。"
-  },
-  historyNote:
-    "日付はイベントページなどの公開情報をもとにした暫定値です。「日程確認中」のものと、まだ掲載できていない回（LT大会、「Slack検索を極めよう」など）は、確認しだい更新します。",
   events: [
     {
-      date: "2026-09-28",
-      title: "Dreamforce 2026 で見てきたSlack情報共有会",
-      format: "ハイブリッド",
-      upcoming: true,
-      summary:
-        "Dreamforce 2026（9/15〜17・サンフランシスコ）に現地参加したチャプターリーダー2名が、見てきたSlackの最新情報と会場の空気をそのまま持ち帰って共有します。",
-      url: BASE + "slack-tokyo-presents-dreamforce-2026-dejian-tekitaslackqing-bao-gong-you-hui/"
+      "date": "2026-09-28",
+      "time": "16:30–18:00",
+      "title": "Dreamforce 2026 で見てきたSlack情報共有会",
+      "format": "ハイブリッド",
+      "venue": "東京・飯田橋 ＋ オンライン",
+      "summary": "9/15–17に開催された Dreamforce 2026 の Slack 関連トピックを、現地で見てきたチャプターリーダーの二人が共有します。",
+      "url": "https://slackcommunity.com/events/details/slack-tokyo-presents-dreamforce-2026-dejian-tekitaslackqing-bao-gong-you-hui/",
+      "upcoming": true
     },
     {
-      date: "2026-08-20",
-      title: "Slackbot の可能性を拡張するMCPとは？",
-      format: "ハイブリッド",
-      summary: "MCP（Model Context Protocol）で Slackbot をどこまで広げられるのかを扱った回。",
-      url: BASE + "slack-tokyo-presents-slackbot-noke-neng-xing-wokuo-zhang-surumcptoha/"
+      "date": "2026-08-20",
+      "time": "16:30–18:00",
+      "title": "Slackbot の可能性を拡張するMCPとは？",
+      "format": "ハイブリッド",
+      "venue": "東京・飯田橋 ＋ オンライン",
+      "summary": "2026年1月にリリースされた Slackbot の進化は止まらず。7月の Skills に続いて、Slackbot × MCP という組み合わせを掘り下げました。",
+      "url": "https://slackcommunity.com/events/details/slack-tokyo-presents-slackbot-noke-neng-xing-wokuo-zhang-surumcptoha/"
     },
     {
-      date: "2026-07-09",
-      title: "Slackbot Skills を作ってみよう！ハンズオン＆ Skills 選手権！",
-      format: "ハイブリッド",
-      summary:
-        "コードを書かずに自然言語で Slackbot の「得意分野」を決められる Skills を、その場で作って持ち寄り、投票で競う選手権つきハンズオン。",
-      url: BASE + "slack-tokyo-presents-slackbot-skills-wozuo-tsutemiyouhanzuon-skills-xuan-shou-quan/"
+      "date": "2026-07-09",
+      "time": "16:30–18:00",
+      "title": "Slackbot Skills を作ってみよう！ハンズオン＆ Skills 選手権！",
+      "format": "ハイブリッド / ハンズオン",
+      "venue": "東京・飯田橋 ＋ オンライン",
+      "summary": "コードを書かずに自然言語で AI アシスタントの「得意技」を定義できる Slackbot Skills を、その場で作って見せ合う選手権つきの回。",
+      "url": "https://slackcommunity.com/events/details/slack-tokyo-presents-slackbot-skills-wozuo-tsutemiyouhanzuon-skills-xuan-shou-quan/"
     },
     {
-      date: "2026-06-25",
-      title: "AWTT 2026 振り返り：Slackbot の使い方 / Vibe CodingでSlackアプリを作ろう",
-      format: "ハイブリッド",
-      summary:
-        "Agentforce World Tour Tokyo 2026 の内容を振り返りつつ、Slackbot の使い方と Vibe Coding でのアプリ作りを共有した回。",
-      url:
-        BASE +
-        "slack-tokyo-presents-awtt-2026-zhen-rifan-rislackbot-noshi-ifang-vibe-codingdeslackapuriwozuo-rou/"
+      "date": "2026-06-25",
+      "time": "16:00–18:00",
+      "title": "AWTT 2026 振り返り：Slackbot の使い方 / Vibe CodingでSlackアプリを作ろう",
+      "format": "ハイブリッド",
+      "venue": "東京・飯田橋 ＋ オンライン",
+      "summary": "Agentforce World Tour Tokyo 2026 で参加者多数となり見られなかった2つのセッションを、コミュニティであらためてお届け。",
+      "url": "https://slackcommunity.com/events/details/slack-tokyo-presents-awtt-2026-zhen-rifan-rislackbot-noshi-ifang-vibe-codingdeslackapuriwozuo-rou/"
     },
     {
-      date: "2026-05-19",
-      title: "Vibe CodingでSlackアプリを作ってみよう",
-      format: "ハイブリッド",
-      summary: "AIと一緒に手を動かして、Slackアプリを実際に作ってみる回。",
-      url: BASE + "slack-tokyo-presents-vibe-codingdeslackapuriwozuo-tsutemiyou/"
+      "date": "2026-05-19",
+      "time": "15:30–18:00",
+      "title": "Vibe CodingでSlackアプリを作ってみよう",
+      "format": "ハイブリッド",
+      "venue": "東京都内 ＋ オンライン",
+      "summary": "2月の開発者向け Deep Dive を踏まえて、参加者の皆さんと一緒に実際に Vibe Coding で Slack アプリを作ってみる回。",
+      "url": "https://slackcommunity.com/events/details/slack-tokyo-presents-vibe-codingdeslackapuriwozuo-tsutemiyou/"
     },
     {
-      date: "2026-04-24",
-      unconfirmed: true,
-      title: "TDX 2026 で発表された最新のSlack情報を共有します",
-      format: "ハイブリッド",
-      summary:
-        "TDX 2026（4/15〜16・サンフランシスコ）で発表されたSlack関連のアップデートを、日本語でまとめて共有した回。",
-      url:
-        BASE +
-        "slack-tokyo-presents-tdx-2026-defa-biao-saretazui-xin-noslackqing-bao-wogong-you-shimasu/"
+      "date": "2026-04-24",
+      "time": "15:30–18:00",
+      "title": "TDX 2026 で発表された最新のSlack情報を共有します",
+      "format": "ハイブリッド",
+      "venue": "東京・新宿区 ＋ オンライン",
+      "summary": "4月15-16日にサンフランシスコで開催された TDX 2026 で発表された Slack 関連ニュースを、Salesforce のメンバーも交えてお届け。",
+      "url": "https://slackcommunity.com/events/details/slack-tokyo-presents-tdx-2026-defa-biao-saretazui-xin-noslackqing-bao-wogong-you-shimasu/"
     },
     {
-      date: "2026-02-19",
-      title: "開発者向けDeep Dive #1",
-      format: "ハイブリッド",
-      summary:
-        "RTS API や MCP サーバーなど、開発者向けのテーマを深掘りする Deep Dive シリーズ第1回。",
-      url: BASE + "slack-tokyo-presents-kai-fa-zhe-xiang-kedeep-dive-1/"
+      "date": "2026-03-17",
+      "time": "16:00–18:00",
+      "title": "Slack検索を極めよう：探したいものが見つからない時どうしてますか？",
+      "format": "ハイブリッド",
+      "venue": "東京都内 ＋ オンライン",
+      "summary": "テーマは「Slack検索 Deep Dive」。運用が長くなるほど増えていく情報の中から、目的の一件にたどり着く方法を持ち寄りました。",
+      "url": "https://slackcommunity.com/events/details/slack-tokyo-presents-slackjian-suo-woji-meyoutan-shitaimonogajian-tsukaranaishi-doushitemasuka/"
     },
     {
-      date: "2025-12-17",
-      unconfirmed: true,
-      title: "Slack Community: Tokyo 2025最終回",
-      format: "オフライン",
-      venue: "Salesforce Tower 東京",
-      summary:
-        "2025年の締めくくりは、東京のSalesforceタワーに集まって、一年をオープンに共有し合う回として開催しました。",
-      url:
-        BASE +
-        "slack-tokyo-presents-slack-community-tokyo-2025zui-zhong-hui-hadong-jing-nosalesforcetawadeshi-shi-shimasu/"
+      "date": "2026-02-19",
+      "time": "16:00–18:00",
+      "title": "開発者向けDeep Dive #1",
+      "format": "ハイブリッド / 開発者向け",
+      "venue": "東京・飯田橋（リバネス 4階セミナールーム）＋ オンライン",
+      "summary": "RTS API や MCP サーバーなど、2025年12月のイベントで Jason Wong さんが言及した機能を開発者目線で深掘り。",
+      "url": "https://slackcommunity.com/events/details/slack-tokyo-presents-kai-fa-zhe-xiang-kedeep-dive-1/"
     },
     {
-      date: "2025-09-25",
-      title: "Slack Community Tokyo Chapter Kick-Off",
-      format: "オンライン",
-      summary:
-        "リブート後の第1回。エンジニアも管理者も一緒に、Slackの使いこなし・AIエージェント・ワークフロー自動化について話しました。",
-      url: BASE + "slack-tokyo-presents-slack-community-tokyo-chapter-kick-off/"
+      "date": "2026-01-21",
+      "time": "16:00–18:00",
+      "title": "Slackbot Community Tour Tokyo ：新しいSlackbotを体験しよう",
+      "format": "ハイブリッド",
+      "venue": "東京・飯田橋（リバネスナレッジ）＋ オンライン",
+      "summary": "世界中で開催された SLACKBOT COMMUNITY TOUR の東京開催。新しくなる Slackbot を、パイロットユーザーとして体験する回。",
+      "url": "https://slackcommunity.com/events/details/slack-tokyo-presents-slackbot-community-tour-tokyo-xin-shiislackbotwoti-yan-shiyou/"
+    },
+    {
+      "date": "2025-12-17",
+      "time": "15:45–18:00",
+      "title": "Slack Community: Tokyo 2025最終回は東京のSalesforceタワーで実施します",
+      "format": "オフライン",
+      "venue": "Salesforce Tower Tokyo（千代田区丸の内）",
+      "summary": "2025年の締めくくりは Salesforce Tower Tokyo。年末らしく「何でも共有大会」として、アドミンにも開発者にも開かれた回。",
+      "url": "https://slackcommunity.com/events/details/slack-tokyo-presents-slack-community-tokyo-2025zui-zhong-hui-hadong-jing-nosalesforcetawadeshi-shi-shimasu/"
+    },
+    {
+      "date": "2025-09-25",
+      "time": "18:00–19:00",
+      "title": "Slack Community Tokyo Chapter Kick-Off",
+      "format": "オンライン",
+      "venue": "オンライン開催",
+      "summary": "「2年の時を経て、新たなステージへ」。2025年8月に新チャプターリーダー体制となり、エンジニアもアドミンも、すべての Slack ユーザーのための場所として再スタート。",
+      "url": "https://slackcommunity.com/events/details/slack-tokyo-presents-slack-community-tokyo-chapter-kick-off/",
+      "milestone": "リブート後 第1回"
     }
-  ],
-  links: {
-    chapter: "https://slackcommunity.com/tokyo/",
-    community: "https://slackcommunity.com/",
-    repo: "https://github.com/geeorgey/slackcommunitytokyo"
-  }
+  ]
 };
