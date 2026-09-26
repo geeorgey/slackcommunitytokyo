@@ -6,6 +6,7 @@
  *
  * events[] の書き方（新しい順に並べてください）:
  *   date      "2026-09-28" 形式。月までしか分からないときは "2026-08" でも可
+ *   category  公式イベントページのカテゴリ（Talks / Workshop など）。省略可
  *   time      "16:30–18:00" など。省略可
  *   title     イベントタイトル
  *   format    "ハイブリッド" など。タグとして表示されます。省略可
@@ -14,6 +15,10 @@
  *   url       イベントページのURL。省略可
  *   upcoming  true にすると「次回」として強調表示されます（1件だけ）
  *   milestone 特別なタグ（例 "リブート後 第1回"）。省略可
+ *
+ * 掲載範囲は 2025年8月のリブート以降（2025-09-25 のキックオフ以降）の全11件です。
+ * 日付・カテゴリ・タイトル・URL は公式の
+ * https://slackcommunity.com/api/event_slim/for_chapter/22/ にもとづいています（2026-09-26 時点）。
  */
 window.SCT_DATA = {
   members: {
@@ -24,16 +29,18 @@ window.SCT_DATA = {
   events: [
     {
       "date": "2026-09-28",
+      "category": "Talks",
       "time": "16:30–18:00",
       "title": "Dreamforce 2026 で見てきたSlack情報共有会",
       "format": "ハイブリッド",
-      "venue": "東京・飯田橋 ＋ オンライン",
-      "summary": "9/15–17に開催された Dreamforce 2026 の Slack 関連トピックを、現地で見てきたチャプターリーダーの二人が共有します。",
+      "venue": "株式会社リバネスナレッジ セミナールーム ＋ オンライン（Google Meet）",
+      "summary": "9/15–17に開催された Dreamforce 2026 の Slack 関連トピックを、現地で見てきたチャプターリーダーの二人が共有します。開場は16:00です。",
       "url": "https://slackcommunity.com/events/details/slack-tokyo-presents-dreamforce-2026-dejian-tekitaslackqing-bao-gong-you-hui/",
       "upcoming": true
     },
     {
       "date": "2026-08-20",
+      "category": "Talks",
       "time": "16:30–18:00",
       "title": "Slackbot の可能性を拡張するMCPとは？",
       "format": "ハイブリッド",
@@ -43,6 +50,7 @@ window.SCT_DATA = {
     },
     {
       "date": "2026-07-09",
+      "category": "Workshop",
       "time": "16:30–18:00",
       "title": "Slackbot Skills を作ってみよう！ハンズオン＆ Skills 選手権！",
       "format": "ハイブリッド / ハンズオン",
@@ -52,6 +60,7 @@ window.SCT_DATA = {
     },
     {
       "date": "2026-06-25",
+      "category": "Workshop",
       "time": "16:00–18:00",
       "title": "AWTT 2026 振り返り：Slackbot の使い方 / Vibe CodingでSlackアプリを作ろう",
       "format": "ハイブリッド",
@@ -61,6 +70,7 @@ window.SCT_DATA = {
     },
     {
       "date": "2026-05-19",
+      "category": "Workshop",
       "time": "15:30–18:00",
       "title": "Vibe CodingでSlackアプリを作ってみよう",
       "format": "ハイブリッド",
@@ -70,6 +80,7 @@ window.SCT_DATA = {
     },
     {
       "date": "2026-04-24",
+      "category": "Talks",
       "time": "15:30–18:00",
       "title": "TDX 2026 で発表された最新のSlack情報を共有します",
       "format": "ハイブリッド",
@@ -79,6 +90,7 @@ window.SCT_DATA = {
     },
     {
       "date": "2026-03-17",
+      "category": "Networking social",
       "time": "16:00–18:00",
       "title": "Slack検索を極めよう：探したいものが見つからない時どうしてますか？",
       "format": "ハイブリッド",
@@ -88,6 +100,7 @@ window.SCT_DATA = {
     },
     {
       "date": "2026-02-19",
+      "category": "Talks",
       "time": "16:00–18:00",
       "title": "開発者向けDeep Dive #1",
       "format": "ハイブリッド / 開発者向け",
@@ -97,6 +110,7 @@ window.SCT_DATA = {
     },
     {
       "date": "2026-01-21",
+      "category": "Planning workshop",
       "time": "16:00–18:00",
       "title": "Slackbot Community Tour Tokyo ：新しいSlackbotを体験しよう",
       "format": "ハイブリッド",
@@ -106,6 +120,7 @@ window.SCT_DATA = {
     },
     {
       "date": "2025-12-17",
+      "category": "Talks",
       "time": "15:45–18:00",
       "title": "Slack Community: Tokyo 2025最終回は東京のSalesforceタワーで実施します",
       "format": "オフライン",
@@ -115,6 +130,7 @@ window.SCT_DATA = {
     },
     {
       "date": "2025-09-25",
+      "category": "Talks",
       "time": "18:00–19:00",
       "title": "Slack Community Tokyo Chapter Kick-Off",
       "format": "オンライン",

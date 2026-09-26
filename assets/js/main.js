@@ -53,6 +53,9 @@
       if (ev.milestone) {
         tags.appendChild(makeTag(ev.milestone, 'is-milestone'));
       }
+      if (ev.category) {
+        tags.appendChild(makeTag(ev.category, 'is-category'));
+      }
       if (ev.format) {
         tags.appendChild(makeTag(ev.format, ''));
       }
