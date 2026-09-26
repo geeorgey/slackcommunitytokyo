@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Slack Community: Tokyo — 1,000人突破！</title>
+<meta name="description" content="Slack Community: Tokyo チャプターのメンバーが1,000人を突破しました。2025年8月のリブート以降の開催履歴と、次回イベントのご案内。">
+<meta property="og:title" content="Slack Community: Tokyo — 1,000人突破！">
+<meta property="og:description" content="2025年8月のリブートから1年。Slack Community: Tokyo のメンバーが1,000人を突破しました。">
+<meta property="og:type" content="website">
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+<a class="skip" href="#main">本文へスキップ</a>
+
+<header class="site-header">
+  <div class="wrap header-inner">
+    <a class="brand" href="./">
+      <span class="brand-mark" aria-hidden="true"></span>
+      <span class="brand-text">Slack Community<span class="brand-sep">:</span> <strong>Tokyo</strong></span>
+    </a>
+    <nav class="site-nav" aria-label="サイト内ナビゲーション">
+      <a href="#next">次回イベント</a>
+      <a href="#history">これまでの歩み</a>
+      <a href="#join">参加する</a>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+
+  <section class="hero">
+    <div class="confetti" aria-hidden="true"></div>
+    <div class="wrap hero-inner">
+      <p class="hero-kicker">2026年9月26日 · メンバー数マイルストーン</p>
+      <h1 class="hero-title">
+        <span class="hero-count" id="memberCount" data-target="1002" aria-label="1002人">0</span>
+        <span class="hero-unit">人</span>
+      </h1>
+      <p class="hero-lead">
+        Slack Community: Tokyo のメンバーが <strong>1,000人を突破</strong>しました🎉<br>
+        いつも参加してくださるみなさん、本当にありがとうございます。
+      </p>
+      <div class="hero-actions">
+        <a class="btn btn-primary" href="#next">次回イベントを見る</a>
+        <a class="btn btn-ghost" href="#history">開催履歴を見る</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="stats wrap" aria-label="チャプターの数字">
+    <div class="stat">
+      <span class="stat-value" id="statMembers">—</span>
+      <span class="stat-label">メンバー数</span>
+    </div>
+    <div class="stat">
+      <span class="stat-value" id="statEvents">—</span>
+      <span class="stat-label">リブート以降の開催回数</span>
+    </div>
+    <div class="stat">
+      <span class="stat-value" id="statReboot">—</span>
+      <span class="stat-label">リブート</span>
+    </div>
+  </section>
+
+  <section id="next" class="next">
+    <div class="wrap">
+      <h2 class="section-title">次回イベント</h2>
+      <div id="nextEvent" class="next-card-slot"></div>
+    </div>
+  </section>
+
+  <section id="history" class="history">
+    <div class="wrap">
+      <h2 class="section-title">これまでの歩み</h2>
+      <p class="section-lead">2025年8月のリブート以降に開催したイベントです。</p>
+      <ol id="timeline" class="timeline"></ol>
+    </div>
+  </section>
+
+  <section id="join" class="join">
+    <div class="wrap join-inner">
+      <h2 class="section-title">参加する</h2>
+      <p>
+        Slack Community: Tokyo は、Slackを使うすべての人のためのコミュニティです。
+        エンジニアも、管理者も、これから使いこなしたい人も歓迎です。
+      </p>
+      <div class="hero-actions">
+        <a class="btn btn-primary" id="joinLink" href="https://slackcommunity.com/tokyo/">チャプターページへ</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <p>Slack Community: Tokyo チャプターの実験的なサイトです。掲載内容は有志によるもので、Slack / Salesforce の公式発表ではありません。</p>
+    <p class="footer-links">
+      <a id="footerChapter" href="https://slackcommunity.com/tokyo/">slackcommunity.com/tokyo</a>
+      <span aria-hidden="true">·</span>
+      <a id="footerRepo" href="https://github.com/geeorgey/slackcommunitytokyo">GitHub リポジトリ</a>
+    </p>
+  </div>
+</footer>
+
+<script src="data/events.js"></script>
+<script src="assets/app.js"></script>
+</body>
+</html>
