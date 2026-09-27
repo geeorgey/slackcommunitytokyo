@@ -32,7 +32,7 @@ https://geeorgey.github.io/slackcommunitytokyo/
 ├── data/metrics.js         # 管理ダッシュボードの集計スナップショット（登録メンバー累計・参加実績）
 ├── assets/
 │   ├── css/style.css       # スタイル（ライト/ダークモード対応）
-│   ├── js/main.js          # カウントアップ、紙吹雪、タイムライン描画
+│   ├── js/main.js          # カウントアップ、お祝い演出（クラッカー・花火・キラキラ）、タイムライン描画
 │   └── js/metrics.js       # 登録メンバー累計・参加実績のグラフ（インラインSVGを自前生成）
 ├── .nojekyll               # Jekyll 処理をスキップ
 └── README.md
